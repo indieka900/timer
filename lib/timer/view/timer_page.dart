@@ -34,7 +34,7 @@ class TimerView extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: <Widget>[
               Padding(
-                padding: EdgeInsets.symmetric(vertical: 50),
+                padding: EdgeInsets.symmetric(vertical: 100),
                 child: Center(
                   child: TimerText(),
                 ),
@@ -59,7 +59,7 @@ class TimerText extends StatelessWidget {
     final secondStr = ((duration % 60) % 60).floor().toString().padLeft(2, '0');
     return Text(
       '$hourStr:$minuteStr:$secondStr',
-      style: Theme.of(context).textTheme.headline1,
+      style: Theme.of(context).textTheme.headline2,
     );
   }
 }
@@ -77,6 +77,7 @@ class Actions extends StatelessWidget {
           children: [
             if (state is TimerInitial) ...[
               FloatingActionButton(
+                backgroundColor: Colors.greenAccent,
                 onPressed: () => context
                     .read<TimerBloc>()
                     .add(TimerStarted(duration: state.duration)),
@@ -85,26 +86,31 @@ class Actions extends StatelessWidget {
             ],
             if (state is TimerRunInProgress) ...[
               FloatingActionButton(
+                backgroundColor: Colors.greenAccent,
                 onPressed: () => context.read<TimerBloc>().add(TimerPaused()),
                 child: Icon(Icons.pause),
               ),
               FloatingActionButton(
+                backgroundColor: Colors.greenAccent,
                 onPressed: () => context.read<TimerBloc>().add(TimerReset()),
                 child: Icon(Icons.replay),
               )
             ],
             if (state is TimerRunPause) ...[
               FloatingActionButton(
+                backgroundColor: Colors.greenAccent,
                 onPressed: () => context.read<TimerBloc>().add(TimerResumed()),
                 child: Icon(Icons.play_arrow),
               ),
               FloatingActionButton(
+                backgroundColor: Colors.greenAccent,
                 onPressed: () => context.read<TimerBloc>().add(TimerReset()),
                 child: Icon(Icons.replay),
               ),
             ],
             if (state is TimerRunComplete) ...[
               FloatingActionButton(
+                backgroundColor: Colors.greenAccent,
                 onPressed: () => context.read<TimerBloc>().add(TimerReset()),
                 child: Icon(Icons.replay),
               )
@@ -129,6 +135,7 @@ class Background extends StatelessWidget {
             Color.fromARGB(255, 189, 33, 98),
             Color.fromARGB(255, 134, 6, 60),
             Color.fromARGB(255, 70, 2, 28),
+            Color.fromARGB(255, 32, 2, 13),
           ],
           begin: Alignment.topCenter,
           end: Alignment.bottomCenter,
