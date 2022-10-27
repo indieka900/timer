@@ -78,6 +78,7 @@ class Actions extends StatelessWidget {
             if (state is TimerInitial) ...[
               FloatingActionButton(
                 backgroundColor: Colors.greenAccent,
+                tooltip: 'START',
                 onPressed: () => context
                     .read<TimerBloc>()
                     .add(TimerStarted(duration: state.duration)),
@@ -86,11 +87,13 @@ class Actions extends StatelessWidget {
             ],
             if (state is TimerRunInProgress) ...[
               FloatingActionButton(
+                tooltip: 'PAUSE',
                 backgroundColor: Colors.greenAccent,
                 onPressed: () => context.read<TimerBloc>().add(TimerPaused()),
                 child: Icon(Icons.pause),
               ),
               FloatingActionButton(
+                tooltip: 'RESTART',
                 backgroundColor: Colors.greenAccent,
                 onPressed: () => context.read<TimerBloc>().add(TimerReset()),
                 child: Icon(Icons.replay),
@@ -98,11 +101,13 @@ class Actions extends StatelessWidget {
             ],
             if (state is TimerRunPause) ...[
               FloatingActionButton(
+                tooltip: 'START',
                 backgroundColor: Colors.greenAccent,
                 onPressed: () => context.read<TimerBloc>().add(TimerResumed()),
                 child: Icon(Icons.play_arrow),
               ),
               FloatingActionButton(
+                tooltip: 'RESTART',
                 backgroundColor: Colors.greenAccent,
                 onPressed: () => context.read<TimerBloc>().add(TimerReset()),
                 child: Icon(Icons.replay),
@@ -110,6 +115,7 @@ class Actions extends StatelessWidget {
             ],
             if (state is TimerRunComplete) ...[
               FloatingActionButton(
+                tooltip: 'RESTART',
                 backgroundColor: Colors.greenAccent,
                 onPressed: () => context.read<TimerBloc>().add(TimerReset()),
                 child: Icon(Icons.replay),
