@@ -28,7 +28,7 @@ class TimerView extends StatelessWidget {
       ),
       body: Stack(
         children: [
-          //const Background(),
+          Background(),
           Column(
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
@@ -111,6 +111,28 @@ class Actions extends StatelessWidget {
           ],
         );
       },
+    );
+  }
+}
+
+class Background extends StatelessWidget {
+  const Background({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      decoration: BoxDecoration(
+        gradient: LinearGradient(
+          colors: [
+            Color.fromARGB(255, 206, 98, 143),
+            Color.fromARGB(255, 189, 33, 98),
+            Color.fromARGB(255, 134, 6, 60),
+            Color.fromARGB(255, 70, 2, 28),
+          ],
+          begin: Alignment.topCenter,
+          end: Alignment.bottomCenter,
+        ),
+      ),
     );
   }
 }
