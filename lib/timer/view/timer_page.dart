@@ -34,7 +34,7 @@ class TimerView extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: <Widget>[
               Padding(
-                padding: EdgeInsets.symmetric(vertical: 100),
+                padding: EdgeInsets.symmetric(vertical: 50),
                 child: Center(
                   child: TimerText(),
                 ),
@@ -54,10 +54,11 @@ class TimerText extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final duration = context.select((TimerBloc bloc) => bloc.state.duration);
+    final hourStr = ((duration / 60) / 60).floor().toString().padLeft(2, '0');
     final minuteStr = ((duration / 60) % 60).floor().toString().padLeft(2, '0');
-    final secondStr = (duration % 60).floor().toString().padLeft(2, '0');
+    final secondStr = ((duration % 60) % 60).floor().toString().padLeft(2, '0');
     return Text(
-      '$minuteStr : $secondStr',
+      '$hourStr:$minuteStr:$secondStr',
       style: Theme.of(context).textTheme.headline1,
     );
   }
