@@ -57,9 +57,22 @@ class TimerText extends StatelessWidget {
     final hourStr = ((duration / 60) / 60).floor().toString().padLeft(2, '0');
     final minuteStr = ((duration / 60) % 60).floor().toString().padLeft(2, '0');
     final secondStr = ((duration % 60) % 60).floor().toString().padLeft(2, '0');
-    return Text(
-      '$hourStr:$minuteStr:$secondStr',
-      style: Theme.of(context).textTheme.headline2,
+    return Container(
+      padding: EdgeInsets.symmetric(horizontal: 20),
+      decoration: BoxDecoration(
+          color: Color.fromARGB(255, 46, 85, 24),
+          borderRadius: BorderRadius.circular(15),
+          boxShadow: [
+            BoxShadow(
+              blurRadius: 12,
+              blurStyle: BlurStyle.solid,
+              color: Color.fromARGB(255, 158, 231, 160),
+            ),
+          ]),
+      child: Text(
+        '$hourStr:$minuteStr:$secondStr',
+        style: Theme.of(context).textTheme.headline2,
+      ),
     );
   }
 }
